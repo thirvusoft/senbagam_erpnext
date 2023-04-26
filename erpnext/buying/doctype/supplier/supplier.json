@@ -39,6 +39,7 @@
   "tax_id",
   "column_break_27",
   "tax_category",
+  "column_break_x2gee",
   "tax_withholding_category",
   "contact_and_address_tab",
   "address_contacts",
@@ -445,6 +446,10 @@
   {
    "fieldname": "column_break_59",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_x2gee",
+   "fieldtype": "Column Break"
   }
  ],
  "icon": "fa fa-user",
@@ -457,7 +462,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2022-11-09 18:02:59.075203",
+ "modified": "2023-04-24 16:31:18.519248",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Supplier",

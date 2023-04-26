@@ -11,9 +11,10 @@
  "engine": "InnoDB",
  "field_order": [
   "basic_details_tab",
+  "section_break_bcelt",
+  "naming_series",
   "basic_information",
   "employee",
-  "naming_series",
   "first_name",
   "middle_name",
   "last_name",
@@ -140,6 +141,7 @@
    "oldfieldname": "naming_series",
    "oldfieldtype": "Select",
    "options": "HR-EMP-",
+   "reqd": 1,
    "set_only_once": 1
   },
   {
@@ -217,6 +219,7 @@
   {
    "fieldname": "employee_number",
    "fieldtype": "Data",
+   "hidden": 1,
    "in_global_search": 1,
    "label": "Employee Number",
    "oldfieldname": "employee_number",
@@ -304,6 +307,7 @@
    "collapsible": 1,
    "fieldname": "employment_details",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Joining"
   },
   {
@@ -368,6 +372,7 @@
   {
    "fieldname": "reports_to",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "label": "Reports to",
    "oldfieldname": "reports_to",
@@ -562,6 +567,7 @@
    "collapsible": 1,
    "fieldname": "educational_qualification",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Educational Qualification"
   },
   {
@@ -574,6 +580,7 @@
    "collapsible": 1,
    "fieldname": "previous_work_experience",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Previous Work Experience",
    "options": "Simple"
   },
@@ -587,6 +594,7 @@
    "collapsible": 1,
    "fieldname": "history_in_company",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "History In Company",
    "options": "Simple"
   },
@@ -606,6 +614,7 @@
   {
    "fieldname": "resignation_letter_date",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Resignation Letter Date",
    "oldfieldname": "resignation_letter_date",
    "oldfieldtype": "Date"
@@ -644,6 +653,7 @@
   {
    "fieldname": "exit_interview_details",
    "fieldtype": "Column Break",
+   "hidden": 1,
    "oldfieldname": "col_brk6",
    "oldfieldtype": "Column Break",
    "width": "50%"
@@ -651,6 +661,7 @@
   {
    "fieldname": "held_on",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Exit Interview Held On",
    "oldfieldname": "held_on",
    "oldfieldtype": "Date"
@@ -658,6 +669,7 @@
   {
    "fieldname": "new_workplace",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "New Workplace",
    "oldfieldname": "new_workplace",
    "oldfieldtype": "Data"
@@ -750,11 +762,13 @@
   {
    "fieldname": "profile_tab",
    "fieldtype": "Tab Break",
+   "hidden": 1,
    "label": "Profile"
   },
   {
    "fieldname": "passport_details_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Passport Details"
   },
   {
@@ -804,55 +818,25 @@
   {
    "fieldname": "column_break_104",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_bcelt",
+   "fieldtype": "Section Break",
+   "hidden": 1
   }
  ],
  "icon": "fa fa-user",
  "idx": 24,
  "image_field": "image",
  "links": [],
- "modified": "2022-09-13 10:27:14.579197",
+ "modified": "2023-04-26 11:37:33.743506",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Employee",
  "name_case": "Title Case",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
- "permissions": [
-  {
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Employee"
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR User",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "HR Manager",
-   "set_user_permissions": 1,
-   "share": 1,
-   "write": 1
-  }
- ],
+ "permissions": [],
  "search_fields": "employee_name",
  "show_name_in_global_search": 1,
  "sort_field": "modified",

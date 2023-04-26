@@ -12,7 +12,9 @@
  "email_append_to": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_vovvu",
   "naming_series",
+  "section_break_khqyh",
   "opportunity_from",
   "party_name",
   "customer_name",
@@ -25,9 +27,11 @@
   "sales_stage",
   "expected_closing",
   "probability",
+  "organization_details_tab",
   "organization_details_section",
   "no_of_employees",
   "annual_revenue",
+  "territory",
   "customer_group",
   "column_break_23",
   "industry",
@@ -37,7 +41,6 @@
   "city",
   "state",
   "country",
-  "territory",
   "section_break_14",
   "currency",
   "column_break_36",
@@ -63,7 +66,6 @@
   "primary_contact_section",
   "contact_person",
   "job_title",
-  "column_break_54",
   "contact_email",
   "contact_mobile",
   "column_break_22",
@@ -537,10 +539,6 @@
    "label": "Primary Contact"
   },
   {
-   "fieldname": "column_break_54",
-   "fieldtype": "Column Break"
-  },
-  {
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "dashboard_tab",
    "fieldtype": "Tab Break",
@@ -567,6 +565,7 @@
   {
    "fieldname": "job_title",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Job Title"
   },
   {
@@ -617,12 +616,26 @@
    "fieldtype": "Link",
    "label": "Country",
    "options": "Country"
+  },
+  {
+   "fieldname": "section_break_vovvu",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "section_break_khqyh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "organization_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Organization Details"
   }
  ],
  "icon": "fa fa-info-sign",
  "idx": 195,
  "links": [],
- "modified": "2022-10-13 12:42:21.545636",
+ "modified": "2023-04-26 10:48:14.811858",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Opportunity",

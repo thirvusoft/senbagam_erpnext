@@ -9,7 +9,9 @@
  "email_append_to": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_2uwdw",
   "naming_series",
+  "section_break_itjia",
   "salutation",
   "first_name",
   "middle_name",
@@ -26,6 +28,7 @@
   "type",
   "request_type",
   "contact_info_tab",
+  "contact_tab",
   "email_id",
   "website",
   "column_break_20",
@@ -40,16 +43,16 @@
   "column_break_28",
   "annual_revenue",
   "industry",
-  "market_segment",
   "column_break_31",
   "territory",
+  "market_segment",
   "fax",
   "address_section",
-  "address_html",
-  "column_break_38",
   "city",
   "state",
   "country",
+  "column_break_38",
+  "address_html",
   "column_break2",
   "contact_html",
   "qualification_tab",
@@ -232,6 +235,7 @@
   {
    "fieldname": "fax",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Fax",
    "oldfieldname": "fax",
    "oldfieldtype": "Data"
@@ -508,13 +512,27 @@
    "fieldtype": "Tab Break",
    "label": "Connections",
    "show_dashboard": 1
+  },
+  {
+   "fieldname": "section_break_2uwdw",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "section_break_itjia",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contact_tab",
+   "fieldtype": "Tab Break",
+   "label": "Contact"
   }
  ],
  "icon": "fa fa-user",
  "idx": 5,
  "image_field": "image",
  "links": [],
- "modified": "2022-10-13 12:42:04.277879",
+ "modified": "2023-04-26 10:20:42.660571",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Lead",

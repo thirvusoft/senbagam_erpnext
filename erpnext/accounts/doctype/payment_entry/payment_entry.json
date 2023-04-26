@@ -17,7 +17,9 @@
   "mode_of_payment",
   "party_section",
   "party_type",
+  "column_break_srmde",
   "party",
+  "column_break_0feeo",
   "party_name",
   "column_break_11",
   "bank_account",
@@ -588,6 +590,7 @@
    "collapsible": 1,
    "fieldname": "accounting_dimensions_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Accounting Dimensions"
   },
   {
@@ -728,12 +731,20 @@
    "fieldname": "section_break_60",
    "fieldtype": "Section Break",
    "hide_border": 1
+  },
+  {
+   "fieldname": "column_break_srmde",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_0feeo",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-02-14 04:52:30.478523",
+ "modified": "2023-04-24 16:24:34.846214",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Payment Entry",

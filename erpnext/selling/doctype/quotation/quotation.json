@@ -9,14 +9,17 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_fwimg",
+  "naming_series",
   "customer_section",
   "title",
-  "naming_series",
   "quotation_to",
+  "column_break_fcplf",
   "party_name",
   "customer_name",
   "column_break_7",
   "transaction_date",
+  "column_break_cedo9",
   "valid_till",
   "column_break1",
   "order_type",
@@ -44,10 +47,11 @@
   "net_total",
   "taxes_section",
   "tax_category",
-  "taxes_and_charges",
   "column_break_36",
+  "taxes_and_charges",
   "shipping_rule",
   "column_break_34",
+  "total_taxes_and_charges",
   "incoterm",
   "named_place",
   "section_break_36",
@@ -55,15 +59,15 @@
   "section_break_39",
   "base_total_taxes_and_charges",
   "column_break_42",
-  "total_taxes_and_charges",
   "totals",
+  "grand_total",
   "base_grand_total",
   "base_rounding_adjustment",
   "base_rounded_total",
   "base_in_words",
   "column_break3",
-  "grand_total",
   "rounding_adjustment",
+  "column_break_3adqq",
   "rounded_total",
   "in_words",
   "section_break_44",
@@ -72,6 +76,7 @@
   "coupon_code",
   "column_break_46",
   "additional_discount_percentage",
+  "column_break_bvtnq",
   "discount_amount",
   "referral_sales_partner",
   "sec_tax_breakup",
@@ -598,12 +603,14 @@
   {
    "fieldname": "coupon_code",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Coupon Code",
    "options": "Coupon Code"
   },
   {
    "fieldname": "referral_sales_partner",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Referral Sales Partner",
    "options": "Sales Partner"
   },
@@ -1066,13 +1073,34 @@
    "fieldname": "named_place",
    "fieldtype": "Data",
    "label": "Named Place"
+  },
+  {
+   "fieldname": "section_break_fwimg",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "column_break_3adqq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_bvtnq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fcplf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_cedo9",
+   "fieldtype": "Column Break"
   }
  ],
  "icon": "fa fa-shopping-cart",
  "idx": 82,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-14 16:50:44.550098",
+ "modified": "2023-04-24 17:15:05.664475",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Quotation",

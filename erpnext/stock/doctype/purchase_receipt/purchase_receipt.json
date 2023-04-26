@@ -9,21 +9,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_fkun4",
+  "naming_series",
   "supplier_section",
   "column_break0",
   "title",
-  "naming_series",
   "supplier",
   "supplier_name",
   "supplier_delivery_note",
   "column_break1",
   "posting_date",
   "posting_time",
-  "set_posting_time",
   "column_break_12",
   "company",
   "apply_putaway_rule",
   "is_return",
+  "set_posting_time",
   "return_against",
   "accounting_dimensions_section",
   "cost_center",
@@ -59,30 +60,31 @@
   "net_total",
   "taxes_charges_section",
   "tax_category",
-  "taxes_and_charges",
+  "base_taxes_and_charges_added",
+  "taxes_and_charges_added",
   "shipping_col",
+  "taxes_and_charges",
   "shipping_rule",
   "column_break_53",
+  "total_taxes_and_charges",
+  "taxes_and_charges_deducted",
+  "base_total_taxes_and_charges",
+  "base_taxes_and_charges_deducted",
   "incoterm",
   "named_place",
   "taxes_section",
   "taxes",
   "totals",
-  "base_taxes_and_charges_added",
-  "base_taxes_and_charges_deducted",
-  "base_total_taxes_and_charges",
   "column_break3",
-  "taxes_and_charges_added",
-  "taxes_and_charges_deducted",
-  "total_taxes_and_charges",
   "section_break_46",
+  "grand_total",
   "base_grand_total",
   "base_rounding_adjustment",
   "base_rounded_total",
   "base_in_words",
   "column_break_50",
-  "grand_total",
   "rounding_adjustment",
+  "column_break_7m7od",
   "rounded_total",
   "in_words",
   "disable_rounded_total",
@@ -91,6 +93,7 @@
   "base_discount_amount",
   "column_break_44",
   "additional_discount_percentage",
+  "column_break_zgwv7",
   "discount_amount",
   "sec_tax_breakup",
   "other_charges_calculation",
@@ -137,6 +140,7 @@
   "transporter_name",
   "column_break5",
   "lr_no",
+  "column_break_9of6n",
   "lr_date",
   "additional_info_section",
   "instructions",
@@ -291,6 +295,7 @@
    "read_only": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "section_addresses",
    "fieldtype": "Section Break",
    "label": "Supplier Address"
@@ -430,6 +435,7 @@
   {
    "fieldname": "set_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Accepted Warehouse",
    "options": "Warehouse",
    "print_hide": 1
@@ -437,6 +443,7 @@
   {
    "fieldname": "rejected_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Rejected Warehouse",
    "no_copy": 1,
    "oldfieldname": "rejected_warehouse",
@@ -452,6 +459,7 @@
    "default": "0",
    "fieldname": "is_subcontracted",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Is Subcontracted",
    "oldfieldname": "is_subcontracted",
    "oldfieldtype": "Select",
@@ -613,6 +621,7 @@
   {
    "fieldname": "shipping_rule",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Shipping Rule",
    "options": "Shipping Rule"
   },
@@ -838,7 +847,6 @@
    "label": "Rounded Total",
    "no_copy": 1,
    "options": "currency",
-   "print_hide": 1,
    "read_only": 1
   },
   {
@@ -848,13 +856,13 @@
    "length": 240,
    "oldfieldname": "in_words_import",
    "oldfieldtype": "Data",
-   "print_hide": 1,
    "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "disable_rounded_total",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Disable Rounded Total"
   },
   {
@@ -954,6 +962,7 @@
    "collapsible": 1,
    "fieldname": "printing_settings",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Printing Settings"
   },
   {
@@ -1079,6 +1088,7 @@
   {
    "fieldname": "scan_barcode",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Scan Barcode",
    "options": "Barcode"
   },
@@ -1129,6 +1139,7 @@
    "collapsible": 1,
    "fieldname": "accounting_dimensions_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Accounting Dimensions"
   },
   {
@@ -1189,9 +1200,11 @@
   {
    "fieldname": "section_break_98",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Company Shipping Address"
   },
   {
+   "collapsible": 1,
    "fieldname": "billing_address_section",
    "fieldtype": "Section Break",
    "label": "Company Billing Address"
@@ -1207,6 +1220,7 @@
   {
    "fieldname": "additional_info_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Additional Info"
   },
   {
@@ -1224,6 +1238,7 @@
   {
    "fieldname": "incoterm",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Incoterm",
    "options": "Incoterm"
   },
@@ -1232,13 +1247,30 @@
    "fieldname": "named_place",
    "fieldtype": "Data",
    "label": "Named Place"
+  },
+  {
+   "fieldname": "section_break_fkun4",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "column_break_7m7od",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_zgwv7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_9of6n",
+   "fieldtype": "Column Break"
   }
  ],
  "icon": "fa fa-truck",
  "idx": 261,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-12-12 18:40:32.447752",
+ "modified": "2023-04-24 17:07:48.427778",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Purchase Receipt",

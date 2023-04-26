@@ -15,9 +15,10 @@
   "salutation",
   "customer_name",
   "customer_type",
-  "customer_group",
   "column_break0",
+  "customer_group",
   "territory",
+  "column_break_0tqxf",
   "gender",
   "lead_name",
   "opportunity_name",
@@ -25,8 +26,8 @@
   "image",
   "defaults_tab",
   "default_price_list",
-  "default_bank_account",
   "column_break_14",
+  "default_bank_account",
   "default_currency",
   "internal_customer_section",
   "is_internal_customer",
@@ -59,6 +60,7 @@
   "tax_id",
   "column_break_21",
   "tax_category",
+  "column_break_r5cje",
   "tax_withholding_category",
   "accounting_tab",
   "credit_limit_section",
@@ -166,6 +168,7 @@
   {
    "fieldname": "account_manager",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Account Manager",
    "options": "User"
   },
@@ -555,6 +558,14 @@
   {
    "fieldname": "column_break_54",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_0tqxf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_r5cje",
+   "fieldtype": "Column Break"
   }
  ],
  "icon": "fa fa-user",
@@ -568,7 +579,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2022-11-08 15:52:34.462657",
+ "modified": "2023-04-24 16:32:51.109705",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",

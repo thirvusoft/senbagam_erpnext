@@ -63,10 +63,11 @@
   "supplied_items",
   "taxes_section",
   "tax_category",
-  "taxes_and_charges",
   "column_break_53",
+  "taxes_and_charges",
   "shipping_rule",
   "column_break_50",
+  "total_taxes_and_charges",
   "incoterm",
   "named_place",
   "section_break_52",
@@ -78,24 +79,26 @@
   "column_break_39",
   "taxes_and_charges_added",
   "taxes_and_charges_deducted",
-  "total_taxes_and_charges",
   "totals_section",
+  "grand_total",
   "base_grand_total",
   "base_rounding_adjustment",
   "base_in_words",
   "base_rounded_total",
   "column_break4",
-  "grand_total",
   "rounding_adjustment",
+  "column_break_1spgw",
   "rounded_total",
   "disable_rounded_total",
   "in_words",
+  "column_break_fe1hh",
   "advance_paid",
   "discount_section",
   "apply_discount_on",
   "base_discount_amount",
   "column_break_45",
   "additional_discount_percentage",
+  "column_break_bcygx",
   "discount_amount",
   "sec_tax_breakup",
   "other_charges_calculation",
@@ -333,6 +336,7 @@
    "print_hide": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "section_addresses",
    "fieldtype": "Section Break",
    "label": "Supplier Address"
@@ -460,6 +464,7 @@
   {
    "fieldname": "set_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Set Target Warehouse",
    "options": "Warehouse",
    "print_hide": 1
@@ -488,6 +493,7 @@
   {
    "fieldname": "scan_barcode",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Scan Barcode",
    "options": "Barcode"
   },
@@ -613,6 +619,7 @@
   {
    "fieldname": "shipping_rule",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Shipping Rule",
    "options": "Shipping Rule",
    "print_hide": 1
@@ -849,7 +856,6 @@
    "length": 240,
    "oldfieldname": "in_words_import",
    "oldfieldtype": "Data",
-   "print_hide": 1,
    "read_only": 1
   },
   {
@@ -862,6 +868,7 @@
    "read_only": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "payment_schedule_section",
    "fieldtype": "Section Break",
    "label": "Payment Terms"
@@ -881,6 +888,7 @@
    "print_hide": 1
   },
   {
+   "collapsible": 1,
    "collapsible_depends_on": "terms",
    "fieldname": "terms_section_break",
    "fieldtype": "Section Break",
@@ -975,6 +983,7 @@
    "collapsible": 1,
    "fieldname": "column_break5",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Printing Settings",
    "oldfieldtype": "Column Break",
    "print_hide": 1,
@@ -1025,6 +1034,7 @@
    "collapsible": 1,
    "fieldname": "subscription_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Auto Repeat"
   },
   {
@@ -1141,6 +1151,7 @@
    "collapsible": 1,
    "fieldname": "accounting_dimensions_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Accounting Dimensions "
   },
   {
@@ -1171,6 +1182,7 @@
    "depends_on": "is_internal_supplier",
    "fieldname": "set_from_warehouse",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Set From Warehouse",
    "options": "Warehouse"
   },
@@ -1208,6 +1220,7 @@
    "label": "Address & Contact"
   },
   {
+   "collapsible": 1,
    "fieldname": "company_billing_address_section",
    "fieldtype": "Section Break",
    "label": "Company Billing Address"
@@ -1216,6 +1229,7 @@
    "collapsible": 1,
    "fieldname": "additional_info_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Additional Info",
    "oldfieldtype": "Section Break"
   },
@@ -1252,6 +1266,7 @@
   {
    "fieldname": "incoterm",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Incoterm",
    "options": "Incoterm"
   },
@@ -1262,16 +1277,29 @@
    "label": "Named Place"
   },
   {
+   "collapsible": 1,
    "fieldname": "shipping_address_section",
    "fieldtype": "Section Break",
    "label": "Shipping Address"
+  },
+  {
+   "fieldname": "column_break_fe1hh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_1spgw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_bcygx",
+   "fieldtype": "Column Break"
   }
  ],
  "icon": "fa fa-file-text",
  "idx": 105,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-14 16:42:29.448464",
+ "modified": "2023-04-24 16:40:52.737595",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Purchase Order",
