@@ -477,7 +477,6 @@
   {
    "collapsible": 1,
    "collapsible_depends_on": "attributes",
-   "depends_on": "eval:!doc.is_fixed_asset",
    "fieldname": "variants_section",
    "fieldtype": "Tab Break",
    "label": "Variants"
@@ -911,7 +910,7 @@
  "index_web_pages_for_search": 1,
  "links": [],
  "make_attachments_public": 1,
- "modified": "2023-02-14 04:48:26.343620",
+ "modified": "2023-04-26 17:47:49.953978",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Item",

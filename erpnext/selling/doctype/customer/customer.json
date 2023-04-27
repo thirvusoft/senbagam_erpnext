@@ -173,6 +173,7 @@
    "options": "User"
   },
   {
+   "default": "Individual",
    "fieldname": "customer_group",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -185,6 +186,7 @@
    "search_index": 1
   },
   {
+   "default": "India",
    "fieldname": "territory",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -579,7 +581,7 @@
    "link_fieldname": "party"
   }
  ],
- "modified": "2023-04-24 16:32:51.109705",
+ "modified": "2023-04-26 15:48:31.244820",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",
