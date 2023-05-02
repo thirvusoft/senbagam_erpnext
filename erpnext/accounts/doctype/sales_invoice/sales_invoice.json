@@ -82,9 +82,9 @@
   "base_in_words",
   "column_break5",
   "rounding_adjustment",
+  "in_words",
   "column_break_vbv9t",
   "rounded_total",
-  "in_words",
   "total_advance",
   "disable_rounded_total",
   "section_break_49",
@@ -2183,7 +2183,7 @@
    "link_fieldname": "consolidated_invoice"
   }
  ],
- "modified": "2023-04-26 10:44:30.732753",
+ "modified": "2023-04-27 20:51:49.063436",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Sales Invoice",

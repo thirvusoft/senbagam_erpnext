@@ -80,7 +80,7 @@ frappe.ui.form.ContactAddressQuickEntryForm = class ContactAddressQuickEntryForm
 		{
 			label: __("State"),
 			fieldname: "state",
-			fieldtype: "Data"
+			fieldtype: "Data",
 		},
 		{
 			label: __("Country"),
