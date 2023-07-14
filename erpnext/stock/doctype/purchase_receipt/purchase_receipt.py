@@ -118,10 +118,10 @@ class PurchaseReceipt(BuyingController):
 		self.validate_posting_time()
 		super(PurchaseReceipt, self).validate()
 
-		if self._action == "submit":
-			self.make_batches("warehouse")
-		else:
-			self.set_status()
+		# if self._action == "submit":
+		# 	self.make_batches("warehouse")
+		# else:
+		# 	self.set_status()
 
 		self.po_required()
 		self.validate_with_previous_doc()
@@ -245,7 +245,7 @@ class PurchaseReceipt(BuyingController):
 
 		from erpnext.stock.doctype.serial_no.serial_no import update_serial_nos_after_submit
 
-		update_serial_nos_after_submit(self, "items")
+		# update_serial_nos_after_submit(self, "items")
 
 		self.make_gl_entries()
 		self.repost_future_sle_and_gle()

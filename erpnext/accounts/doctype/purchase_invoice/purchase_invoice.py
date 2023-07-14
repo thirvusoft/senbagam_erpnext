@@ -488,6 +488,44 @@ class PurchaseInvoice(BuyingController):
 					)
 
 	def on_submit(self):
+		company=frappe.get_value("Company",self.company,"company_type")
+		company_type=frappe.get_value("Company Type",company,"purchase")
+		if self.update_stock == 1:
+			# thirvu customization start
+			
+			
+			if company_type==1 and self.is_return==0:
+				for i in self.items:
+					if not i.serial_no and i.batch_no:
+						frappe.throw("Please Enter Serial No")
+					else:
+						stock = frappe.new_doc("Stock Entry")
+						stock.stock_entry_type = "Material Issuse"
+						stock.posting_date = self.posting_date
+						for i in self.items:
+							if i.serial_no:
+								l=i.serial_no.split("\n")
+								serial_warehouse=frappe.get_value("Serial No",l[0],"warehouse") 
+								company=frappe.get_value("Warehouse",serial_warehouse,"company") 
+								stock.company =company
+								cost_center=frappe.get_value("Company",company,"cost_center")
+								stock.append(
+								"items",
+								{
+									"s_warehouse": serial_warehouse,
+									"item_code": i.item_code,
+									"qty": i.qty,
+									"uom": i.uom,
+									"serial_no":i.serial_no,
+									"batch_no":i.batch_no,
+									"cost_center":cost_center
+								},
+								)
+							
+						stock.insert()
+						stock.submit()
+			if self.is_old_subcontracting_flow:
+				self.set_consumed_qty_in_subcontract_order()
 		super(PurchaseInvoice, self).on_submit()
 
 		self.check_prev_docstatus()
@@ -509,13 +547,12 @@ class PurchaseInvoice(BuyingController):
 		# because updating ordered qty in bin depends upon updated ordered qty in PO
 		if self.update_stock == 1:
 			self.update_stock_ledger()
-
 			if self.is_old_subcontracting_flow:
 				self.set_consumed_qty_in_subcontract_order()
 
 			from erpnext.stock.doctype.serial_no.serial_no import update_serial_nos_after_submit
 
-			update_serial_nos_after_submit(self, "items")
+			# update_serial_nos_after_submit(self, "items")
 
 		# this sequence because outstanding may get -negative
 		self.make_gl_entries()
@@ -528,6 +565,10 @@ class PurchaseInvoice(BuyingController):
 		self.update_advance_tax_references()
 
 		self.process_common_party_accounting()
+		if company_type==0:
+			print("lllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+			for i in self.items:
+				i.batch_no=""
 
 	def make_gl_entries(self, gl_entries=None, from_repost=False):
 		if not gl_entries:

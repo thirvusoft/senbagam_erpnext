@@ -36,6 +36,7 @@ purchase_doctypes = [
 
 @frappe.whitelist()
 def get_item_details(args, doc=None, for_validate=False, overwrite_warehouse=True):
+	
 	"""
 	args = {
 	        "item_code": "",
@@ -155,26 +156,74 @@ def update_stock(args, out):
 	if (
 		(
 			args.get("doctype") == "Delivery Note"
-			or (args.get("doctype") == "Sales Invoice" and args.get("update_stock"))
+			or (args.get("doctype") == "Sales Invoice" or args.get("update_stock"))
 		)
 		and out.warehouse
 		and out.stock_qty > 0
 	):
+		print(args)
+		company_type=frappe.get_value("Company",args.get("Company"),"company_type")
+		sales=frappe.get_value("Company Type",company_type,"sales")
+		if sales==1 and  args.get("pos_profile"):
+			if out.has_batch_no and not args.get("batch_no"):
+				out.batch_no = get_batch_no(out.item_code, out.warehouse, out.qty)
+				print(out)
+				actual_batch_qty = get_batch_qty(out.batch_no, out.warehouse, out.item_code)
+				if actual_batch_qty:
+					out.update(actual_batch_qty)
 
-		if out.has_batch_no and not args.get("batch_no"):
-			out.batch_no = get_batch_no(out.item_code, out.warehouse, out.qty)
-			actual_batch_qty = get_batch_qty(out.batch_no, out.warehouse, out.item_code)
-			if actual_batch_qty:
-				out.update(actual_batch_qty)
+			if out.has_serial_no and args.get("batch_no"):
+				print("222")
+				reserved_so = get_so_reservation_for_item(args)
+				out.batch_no = args.get("batch_no")
+				out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
 
-		if out.has_serial_no and args.get("batch_no"):
-			reserved_so = get_so_reservation_for_item(args)
-			out.batch_no = args.get("batch_no")
-			out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+			elif out.has_serial_no:
+				print("3333")
+				reserved_so = get_so_reservation_for_item(args)
+				out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+		elif(sales==1):
+			if out.has_batch_no and not args.get("batch_no"):
+				out.batch_no = None
+				# get_batch_no(out.item_code, out.warehouse, out.qty)
+				print(out)
+				actual_batch_qty = get_batch_qty(out.batch_no, out.warehouse, out.item_code)
+				if actual_batch_qty:
+					out.update(actual_batch_qty)
 
-		elif out.has_serial_no:
-			reserved_so = get_so_reservation_for_item(args)
-			out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+			if out.has_serial_no and args.get("batch_no"):
+				print("222")
+				reserved_so = get_so_reservation_for_item(args)
+				out.batch_no = None
+				# args.get("batch_no")
+				out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+
+			elif out.has_serial_no:
+				print("3333")
+				reserved_so = get_so_reservation_for_item(args)
+				out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+		elif(sales==0):
+			if out.has_batch_no and not args.get("batch_no"):
+				out.batch_no = None
+				# get_batch_no(out.item_code, out.warehouse, out.qty)
+				print(out)
+				actual_batch_qty = get_batch_qty(out.batch_no, out.warehouse, out.item_code)
+				if actual_batch_qty:
+					out.update(actual_batch_qty)
+
+			if out.has_serial_no and args.get("batch_no"):
+				print("222")
+				reserved_so = get_so_reservation_for_item(args)
+				out.batch_no = None
+				# args.get("batch_no")
+				out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+
+			elif out.has_serial_no:
+				print("3333")
+				reserved_so = get_so_reservation_for_item(args)
+				out.serial_no = get_serial_no(out, args.serial_no, sales_order=reserved_so)
+
+		
 
 	if not out.serial_no:
 		out.pop("serial_no", None)

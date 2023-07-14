@@ -413,19 +413,81 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 		var me = this;
 		var item = frappe.get_doc(cdt, cdn);
 		var update_stock = 0, show_batch_dialog = 0;
+		var without_serial=0
 
 		item.weight_per_unit = 0;
 		item.weight_uom = '';
 		item.conversion_factor = 0;
-
+		
 		if(['Sales Invoice'].includes(this.frm.doc.doctype)) {
 			update_stock = cint(me.frm.doc.update_stock);
 			show_batch_dialog = update_stock;
-
-		} else if((this.frm.doc.doctype === 'Purchase Receipt' && me.frm.doc.is_return) ||
-			this.frm.doc.doctype === 'Delivery Note') {
-			show_batch_dialog = 1;
+			if(this.frm.doc.company){
+				
+			frappe.db.get_value('Company', this.frm.doc.company, 'company_type', (r) => { 
+				
+				frappe.db.get_value('Company Type', r.company_type, 'sales', (value) => {
+					
+					without_serial=value.sales;
+				
+				});
+			});
 		}
+		
+	
+		} else if(this.frm.doc.doctype == "Purchase Invoice") {
+			
+			update_stock = cint(me.frm.doc.update_stock);
+			show_batch_dialog = update_stock;
+			if(this.frm.doc.company){
+			frappe.db.get_value('Company', this.frm.doc.company, 'company_type', (r) => { 
+				
+				frappe.db.get_value('Company Type', r.company_type, 'purchase', (value) => {
+					
+					without_serial=value.purchase;
+				
+				});
+			});
+		}}
+		else if(this.frm.doc.doctype === 'Delivery Note' ) {
+				
+			show_batch_dialog = 1;
+			frappe.db.get_value('Company', this.frm.doc.company, 'company_type', (r) => { 
+				
+				frappe.db.get_value('Company Type', r.company_type, 'sales', (value) => {
+					
+					without_serial=value.sales;
+				
+				});
+			});
+		}
+		else if(this.frm.doc.doctype === 'Purchase Receipt' ) {
+				console.log("pppppppppppppppppppppppppppppp")
+			show_batch_dialog = 1;
+			frappe.db.get_value('Company', this.frm.doc.company, 'company_type', (r) => { 
+				
+				frappe.db.get_value('Company Type', r.company_type, 'purchase', (value) => {
+					
+					without_serial=value.purchase;
+				
+				});
+			});
+		}
+		
+	else if((this.frm.doc.doctype === 'Purchase Receipt' && me.frm.doc.is_return) ||
+			this.frm.doc.doctype === 'Delivery Note') {
+				
+			show_batch_dialog = 1;
+			frappe.db.get_value('Company', this.frm.doc.company, 'company_type', (r) => { 
+				
+				frappe.db.get_value('Company Type', r.company_type, 'purchase', (value) => {
+					
+					without_serial=value.purchase;
+				
+				});
+			});
+		}
+		
 		item.barcode = null;
 
 
@@ -528,23 +590,38 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 											});
 								},
 								() => {
-									if(show_batch_dialog && !frappe.flags.hide_serial_batch_dialog) {
-										var d = locals[cdt][cdn];
-										$.each(r.message, function(k, v) {
-											if(!d[k]) d[k] = v;
-										});
-
-										if (d.has_batch_no && d.has_serial_no) {
-											d.batch_no = undefined;
+									var d = locals[cdt][cdn];
+									if(without_serial==1 && d.has_batch_no && d.has_serial_no){
+										
+										
+										if(show_batch_dialog && !frappe.flags.hide_serial_batch_dialog) {
+											var d = locals[cdt][cdn];
+											$.each(r.message, function(k, v) {
+												if(!d[k]) d[k] = v;
+											});
+	
+											if (d.has_batch_no && d.has_serial_no) {
+												d.batch_no = undefined;
+											}
+	
+											erpnext.show_serial_batch_selector(me.frm, d, (item) => {
+												me.frm.script_manager.trigger('qty', item.doctype, item.name);
+												if (!me.frm.doc.set_warehouse)
+													me.frm.script_manager.trigger('warehouse', item.doctype, item.name);
+												me.apply_price_list(item, true);
+											}, undefined, !frappe.flags.hide_serial_batch_dialog);
 										}
 
-										erpnext.show_serial_batch_selector(me.frm, d, (item) => {
-											me.frm.script_manager.trigger('qty', item.doctype, item.name);
-											if (!me.frm.doc.set_warehouse)
-												me.frm.script_manager.trigger('warehouse', item.doctype, item.name);
-											me.apply_price_list(item, true);
-										}, undefined, !frappe.flags.hide_serial_batch_dialog);
 									}
+									// else{
+									// 	console.log("fsddddddddddddddddddddddddddddddddddddddd")
+									// 	var d = locals[cdt][cdn];
+									// 	d.batch_no=None;
+									
+									// }
+										
+									
+									
 								},
 								() => me.conversion_factor(doc, cdt, cdn, true),
 								() => me.remove_pricing_rule(item),

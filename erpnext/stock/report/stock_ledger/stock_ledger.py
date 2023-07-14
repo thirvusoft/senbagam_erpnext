@@ -91,13 +91,13 @@ def update_available_serial_nos(available_serial_nos, sle):
 		if sle.actual_qty > 0:
 			if sn in existing_serial_no:
 				existing_serial_no.remove(sn)
-			else:
-				existing_serial_no.append(sn)
+			# else:
+			# 	existing_serial_no.append(sn)
 		else:
 			if sn in existing_serial_no:
-				existing_serial_no.remove(sn)
-			else:
-				existing_serial_no.append(sn)
+			 	existing_serial_no.remove(sn)
+			# else:
+			# 	existing_serial_no.append(sn)
 
 	sle.balance_serial_no = "\n".join(existing_serial_no)
 

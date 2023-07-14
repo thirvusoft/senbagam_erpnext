@@ -212,7 +212,8 @@ def get_batch_qty(
 			.where((sle.is_cancelled == 0) & (sle.item_code == item_code) & (sle.warehouse == warehouse))
 			.groupby(sle.batch_no)
 		).run(as_dict=True)
-
+	print("get_batch")
+	print(out)
 	return out
 
 
@@ -286,7 +287,7 @@ def get_batch_no(item_code, warehouse, qty=1, throw=False, serial_no=None):
 
 	batch_no = None
 	batches = get_batches(item_code, warehouse, qty, throw, serial_no)
-
+	
 	for batch in batches:
 		if flt(qty) <= flt(batch.qty):
 			batch_no = batch.batch_id
@@ -300,7 +301,8 @@ def get_batch_no(item_code, warehouse, qty=1, throw=False, serial_no=None):
 		)
 		if throw:
 			raise UnableToSelectBatchError
-
+	print("batch_no")
+	print(batch_no)
 	return batch_no
 
 

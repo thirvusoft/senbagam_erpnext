@@ -143,19 +143,19 @@ def validate_serial_no(sle):
 			voucher_no = frappe.bold(get_link_to_form(row.voucher_type, row.voucher_no))
 			vouchers.append(f"{voucher_type} {voucher_no}")
 
-		if vouchers:
-			serial_no = frappe.bold(sn)
-			msg = (
-				f"""The serial no {serial_no} has been used in the future transactions so you need to cancel them first.
-				The list of the transactions are as below."""
-				+ "<br><br><ul><li>"
-			)
+		# if vouchers:
+		# 	serial_no = frappe.bold(sn)
+		# 	msg = (
+		# 		f"""The serial no {serial_no} has been used in the future transactions so you need to cancel them first.
+		# 		The list of the transactions are as below."""
+		# 		+ "<br><br><ul><li>"
+		# 	)
 
-			msg += "</li><li>".join(vouchers)
-			msg += "</li></ul>"
+		# 	msg += "</li><li>".join(vouchers)
+		# 	msg += "</li></ul>"
 
-			title = "Cannot Submit" if not sle.get("is_cancelled") else "Cannot Cancel"
-			frappe.throw(_(msg), title=_(title), exc=SerialNoExistsInFutureTransaction)
+		# 	title = "Cannot Submit" if not sle.get("is_cancelled") else "Cannot Cancel"
+		# 	frappe.throw(_(msg), title=_(title), exc=SerialNoExistsInFutureTransaction)
 
 
 def validate_cancellation(args):

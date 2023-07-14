@@ -332,14 +332,14 @@ def validate_serial_no(sle, item_det):
 								SerialNoItemError,
 							)
 
-					if cint(sle.actual_qty) > 0 and has_serial_no_exists(sr, sle):
-						doc_name = frappe.bold(get_link_to_form(sr.purchase_document_type, sr.purchase_document_no))
-						frappe.throw(
-							_("Serial No {0} has already been received in the {1} #{2}").format(
-								frappe.bold(serial_no), sr.purchase_document_type, doc_name
-							),
-							SerialNoDuplicateError,
-						)
+					# if cint(sle.actual_qty) > 0 and has_serial_no_exists(sr, sle):
+					# 	doc_name = frappe.bold(get_link_to_form(sr.purchase_document_type, sr.purchase_document_no))
+					# 	frappe.throw(
+					# 		_("Serial No {0} has already been received in the {1} #{2}").format(
+					# 			frappe.bold(serial_no), sr.purchase_document_type, doc_name
+					# 		),
+					# 		SerialNoDuplicateError,
+					# 	)
 
 					if (
 						sr.delivery_document_no
@@ -443,10 +443,10 @@ def validate_serial_no(sle, item_det):
 				elif cint(sle.actual_qty) < 0:
 					# transfer out
 					frappe.throw(_("Serial No {0} not in stock").format(serial_no), SerialNoNotExistsError)
-		elif cint(sle.actual_qty) < 0 or not item_det.serial_no_series:
-			frappe.throw(
-				_("Serial Nos Required for Serialized Item {0}").format(sle.item_code), SerialNoRequiredError
-			)
+		# elif cint(sle.actual_qty) < 0 or not item_det.serial_no_series:
+		# 	frappe.throw(
+		# 		_("Serial Nos Required for Serialized Item {0}").format(sle.item_code), SerialNoRequiredError
+		# 	)
 	elif serial_nos:
 		# SLE is being cancelled and has serial nos
 		for serial_no in serial_nos:
@@ -550,6 +550,7 @@ def update_serial_nos(sle, item_det):
 		sle.db_set("serial_no", serial_nos)
 		validate_serial_no(sle, item_det)
 	if sle.serial_no:
+
 		auto_make_serial_nos(sle)
 
 
@@ -569,38 +570,111 @@ def get_new_serial_number(series):
 
 
 def auto_make_serial_nos(args):
+	print("777777777777777777")
 	serial_nos = get_serial_nos(args.get("serial_no"))
 	created_numbers = []
 	voucher_type = args.get("voucher_type")
 	item_code = args.get("item_code")
-	for serial_no in serial_nos:
-		is_new = False
-		if frappe.db.exists("Serial No", serial_no):
-			sr = frappe.get_cached_doc("Serial No", serial_no)
-		elif args.get("actual_qty", 0) > 0:
-			sr = frappe.new_doc("Serial No")
-			is_new = True
+	if args.get("voucher_type") == "Sales Invoice":
+		print("9999999999999999999999")
+		company_type=frappe.get_value("Company",args.get("company"),"company_type")
+		sales_value=frappe.get_value("Company Type",company_type,"sales")
+		if not sales_value==0:
+			print("9999999999999999999999")
+	
+			for serial_no in serial_nos:
+				is_new = False
+				if frappe.db.exists("Serial No", serial_no):
+					sr = frappe.get_cached_doc("Serial No", serial_no)
+				elif args.get("actual_qty", 0) > 0:
+					sr = frappe.new_doc("Serial No")
+					is_new = True
 
-		sr = update_args_for_serial_no(sr, serial_no, args, is_new=is_new)
-		if is_new:
-			created_numbers.append(sr.name)
+				sr = update_args_for_serial_no(sr, serial_no, args, is_new=is_new)
+				if is_new :
+					created_numbers.append(sr.name)
 
-	form_links = list(map(lambda d: get_link_to_form("Serial No", d), created_numbers))
+			form_links = list(map(lambda d: get_link_to_form("Serial No", d), created_numbers))
 
-	# Setting up tranlated title field for all cases
-	singular_title = _("Serial Number Created")
-	multiple_title = _("Serial Numbers Created")
+			# Setting up tranlated title field for all cases
+			singular_title = _("Serial Number Created")
+			multiple_title = _("Serial Numbers Created")
 
-	if voucher_type:
-		multiple_title = singular_title = _("{0} Created").format(voucher_type)
+			if voucher_type:
+				multiple_title = singular_title = _("{0} Created").format(voucher_type)
 
-	if len(form_links) == 1:
-		frappe.msgprint(_("Serial No {0} Created").format(form_links[0]), singular_title)
-	elif len(form_links) > 0:
-		message = _("The following serial numbers were created: <br><br> {0}").format(
-			get_items_html(form_links, item_code)
-		)
-		frappe.msgprint(message, multiple_title)
+			if len(form_links) == 1:
+				frappe.msgprint(_("Serial No {0} Created").format(form_links[0]), singular_title)
+			elif len(form_links) > 0:
+				message = _("The following serial numbers were created: <br><br> {0}").format(
+					get_items_html(form_links, item_code)
+				)
+				frappe.msgprint(message, multiple_title)
+
+	elif( args.get("voucher_type") == "Purchase Invoice" or args.get("voucher_type") == "Purchase Receipt") :
+		print("444444444444444444444444444")
+		company_type=frappe.get_value("Company",args.get("company"),"company_type")
+		purchase_value=frappe.get_value("Company Type",company_type,"purchase")
+		if not purchase_value==0:
+			print("vvvvvvvvvvvvvvvvvvvvvv")
+			for serial_no in serial_nos:
+				is_new = False
+				if frappe.db.exists("Serial No", serial_no):
+					sr = frappe.get_cached_doc("Serial No", serial_no)
+				elif args.get("actual_qty", 0) > 0:
+					sr = frappe.new_doc("Serial No")
+					is_new = True
+
+				sr = update_args_for_serial_no(sr, serial_no, args, is_new=is_new)
+				if is_new :
+					created_numbers.append(sr.name)
+
+			form_links = list(map(lambda d: get_link_to_form("Serial No", d), created_numbers))
+
+			# Setting up tranlated title field for all cases
+			singular_title = _("Serial Number Created")
+			multiple_title = _("Serial Numbers Created")
+
+			if voucher_type:
+				multiple_title = singular_title = _("{0} Created").format(voucher_type)
+
+			if len(form_links) == 1:
+				frappe.msgprint(_("Serial No {0} Created").format(form_links[0]), singular_title)
+			elif len(form_links) > 0:
+				message = _("The following serial numbers were created: <br><br> {0}").format(
+					get_items_html(form_links, item_code)
+				)
+				frappe.msgprint(message, multiple_title)
+	else:
+		print("2222222222222222222222222222222222")
+		for serial_no in serial_nos:
+			is_new = False
+			if frappe.db.exists("Serial No", serial_no):
+				sr = frappe.get_cached_doc("Serial No", serial_no)
+			elif args.get("actual_qty", 0) > 0:
+				sr = frappe.new_doc("Serial No")
+				is_new = True
+
+			sr = update_args_for_serial_no(sr, serial_no, args, is_new=is_new)
+			if is_new :
+				created_numbers.append(sr.name)
+
+		form_links = list(map(lambda d: get_link_to_form("Serial No", d), created_numbers))
+
+		# Setting up tranlated title field for all cases
+		singular_title = _("Serial Number Created")
+		multiple_title = _("Serial Numbers Created")
+
+		if voucher_type:
+			multiple_title = singular_title = _("{0} Created").format(voucher_type)
+
+		if len(form_links) == 1:
+			frappe.msgprint(_("Serial No {0} Created").format(form_links[0]), singular_title)
+		elif len(form_links) > 0:
+			message = _("The following serial numbers were created: <br><br> {0}").format(
+				get_items_html(form_links, item_code)
+			)
+			frappe.msgprint(message, multiple_title)
 
 
 def get_items_html(serial_nos, item_code):

@@ -108,7 +108,7 @@ class SalesInvoice(SellingController):
 		self.validate_item_cost_centers()
 		self.check_conversion_rate()
 		self.validate_accounts()
-
+		
 		validate_inter_company_party(
 			self.doctype, self.customer, self.company, self.inter_company_invoice_reference
 		)
@@ -129,8 +129,8 @@ class SalesInvoice(SellingController):
 		if not self.is_opening:
 			self.is_opening = "No"
 
-		if self._action != "submit" and self.update_stock and not self.is_return:
-			set_batch_nos(self, "warehouse", True)
+		# if self._action != "submit" and self.update_stock and not self.is_return:
+		# 	set_batch_nos(self, "warehouse", True)
 
 		if self.redeem_loyalty_points:
 			lp = frappe.get_doc("Loyalty Program", self.loyalty_program)
@@ -262,8 +262,9 @@ class SalesInvoice(SellingController):
 		# because updating reserved qty in bin depends upon updated delivered qty in SO
 		if self.update_stock == 1:
 			self.update_stock_ledger()
-		if self.is_return and self.update_stock:
-			update_serial_nos_after_submit(self, "items")
+		# if self.is_return and self.update_stock:
+		# 	pass
+		# 	update_serial_nos_after_submit(self, "items")
 
 		# this sequence because outstanding may get -ve
 		self.make_gl_entries()
@@ -275,7 +276,7 @@ class SalesInvoice(SellingController):
 			self.update_billing_status_for_zero_amount_refdoc("Delivery Note")
 			self.update_billing_status_for_zero_amount_refdoc("Sales Order")
 			self.check_credit_limit()
-
+	
 		self.update_serial_no()
 
 		if not cint(self.is_pos) == 1 and not self.is_return:
@@ -2605,3 +2606,8 @@ def check_if_return_invoice_linked_with_payment_entry(self):
 			message += " " + ", ".join(payment_entries_link) + " "
 			message += _("to unallocate the amount of this Return Invoice before cancelling it.")
 			frappe.throw(message)
+
+
+
+
+

@@ -139,9 +139,9 @@ class DeliveryNote(SellingController):
 
 		make_packing_list(self)
 
-		if self._action != "submit" and not self.is_return:
-			set_batch_nos(self, "warehouse", throw=True)
-			set_batch_nos(self, "warehouse", throw=True, child_table="packed_items")
+		# if self._action != "submit" and not self.is_return:
+		# 	set_batch_nos(self, "warehouse", throw=True)
+		# 	set_batch_nos(self, "warehouse", throw=True, child_table="packed_items")
 
 		self.update_current_stock()
 
