@@ -292,17 +292,20 @@ def get_batch_no(item_code, warehouse, qty=1, throw=False, serial_no=None):
 		if flt(qty) <= flt(batch.qty):
 			batch_no = batch.batch_id
 			break
-
-	if not batch_no:
-		frappe.msgprint(
-			_(
-				"Please select a Batch for Item {0}. Unable to find a single batch that fulfills this requirement"
-			).format(frappe.bold(item_code))
-		)
-		if throw:
-			raise UnableToSelectBatchError
-	print("batch_no")
-	print(batch_no)
+	company=frappe.get_value("Warehouse",warehouse,"company")
+	company_type=frappe.get_value("Company",company,"company_type")
+	sales_value=frappe.get_value("Company Type",company_type,"sales")
+	purchase_value=frappe.get_value("Company Type",company_type,"purchase")
+	if sales_value==1 and purchase_value==1:
+		if not batch_no:
+			frappe.msgprint(
+				_(
+					"Please select a Batch for Item {0}. Unable to find a single batch that fulfills this requirement"
+				).format(frappe.bold(item_code))
+			)
+			if throw:
+				raise UnableToSelectBatchError
+	
 	return batch_no
 
 
