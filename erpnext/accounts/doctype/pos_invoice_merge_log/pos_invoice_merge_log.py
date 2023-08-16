@@ -156,8 +156,10 @@ class POSInvoiceMergeLog(Document):
 			map_doc(doc, invoice, table_map={"doctype": invoice.doctype})
 
 			if doc.redeem_loyalty_points:
-				invoice.loyalty_redemption_account = doc.loyalty_redemption_account
-				invoice.loyalty_redemption_cost_center = doc.loyalty_redemption_cost_center
+				invoice.loyalty_redemption_account = frappe.get_value("Company",ref_doc.company,"loyalty_points_redemption_account")
+				# doc.loyalty_redemption_account
+				invoice.loyalty_redemption_cost_center = frappe.get_value("Company",doc.company,"cost_center")
+				# doc.loyalty_redemption_cost_center
 				loyalty_points_sum += doc.loyalty_points
 				loyalty_amount_sum += doc.loyalty_amount
 

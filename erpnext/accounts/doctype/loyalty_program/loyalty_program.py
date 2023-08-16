@@ -129,16 +129,19 @@ def validate_loyalty_points(ref_doc, points_to_redeem):
 	else:
 		loyalty_program = frappe.db.get_value("Customer", ref_doc.customer, ["loyalty_program"])
 
-	if (
-		loyalty_program
-		and frappe.db.get_value("Loyalty Program", loyalty_program, ["company"]) != ref_doc.company
-	):
-		frappe.throw(_("The Loyalty Program isn't valid for the selected company"))
+	# if (
+	# 	loyalty_program
+	# 	and frappe.db.get_value("Loyalty Program", loyalty_program, ["company"]) != ref_doc.company
+	# ):
+	# 	frappe.throw(_("The Loyalty Program isn't valid for the selected company"))
 
 	if loyalty_program and points_to_redeem:
+		company=frappe.get_all("Company",{"company_type":"Parent"},pluck="name")
 		loyalty_program_details = get_loyalty_program_details_with_points(
-			ref_doc.customer, loyalty_program, posting_date, ref_doc.company
+			ref_doc.customer, loyalty_program, posting_date, company[0]
 		)
+		print("fgggggggggggggggggggeeeeeeeeeeeeeeeeewwwwwwwwwwwwwwwwww")
+		print(loyalty_program_details)
 
 		if points_to_redeem > loyalty_program_details.loyalty_points:
 			frappe.throw(_("You don't have enought Loyalty Points to redeem"))
@@ -154,10 +157,12 @@ def validate_loyalty_points(ref_doc, points_to_redeem):
 		if ref_doc.doctype == "Sales Invoice":
 			ref_doc.loyalty_program = loyalty_program
 			if not ref_doc.loyalty_redemption_account:
-				ref_doc.loyalty_redemption_account = loyalty_program_details.expense_account
+				ref_doc.loyalty_redemption_account = frappe.get_value("Company",ref_doc.company,"loyalty_points_redemption_account")
+				# loyalty_program_details.expense_account
 
 			if not ref_doc.loyalty_redemption_cost_center:
-				ref_doc.loyalty_redemption_cost_center = loyalty_program_details.cost_center
+				ref_doc.loyalty_redemption_cost_center = frappe.get_value("Company",ref_doc.company,"cost_center")
+				# loyalty_program_details.cost_center
 
 		elif ref_doc.doctype == "Sales Order":
 			return loyalty_amount

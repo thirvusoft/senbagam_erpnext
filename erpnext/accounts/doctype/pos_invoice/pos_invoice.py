@@ -373,9 +373,10 @@ class POSInvoice(SalesInvoice):
 		if self.redeem_loyalty_points and (
 			not self.loyalty_redemption_account or not self.loyalty_redemption_cost_center
 		):
-			expense_account, cost_center = frappe.db.get_value(
-				"Loyalty Program", self.loyalty_program, ["expense_account", "cost_center"]
-			)
+			expense_account, cost_center =frappe.db.get_value("Company",self.company,["loyalty_points_redemption _account", "cost_center"])
+			# expense_account, cost_center = frappe.db.get_value(
+			# 	"Loyalty Program", self.loyalty_program, ["expense_account", "cost_center"]
+			# )
 			if not self.loyalty_redemption_account:
 				self.loyalty_redemption_account = expense_account
 			if not self.loyalty_redemption_cost_center:

@@ -505,8 +505,12 @@ class PurchaseInvoice(BuyingController):
 						for i in self.items:
 							if i.serial_no:
 								l=i.serial_no.split("\n")
+								print(l)
+								print(l[0])
 								serial_warehouse=frappe.get_value("Serial No",l[0],"warehouse") 
+								print(serial_warehouse)
 								company=frappe.get_value("Warehouse",serial_warehouse,"company") 
+								print(company)
 								stock.company =company
 								cost_center=frappe.get_value("Company",company,"cost_center")
 								stock.append(
@@ -566,7 +570,7 @@ class PurchaseInvoice(BuyingController):
 
 		self.process_common_party_accounting()
 		if company_type==0:
-			print("lllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+			
 			for i in self.items:
 				i.batch_no=""
 

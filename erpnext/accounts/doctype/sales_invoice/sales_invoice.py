@@ -86,6 +86,17 @@ class SalesInvoice(SellingController):
 			self.indicator_title = _("Paid")
 
 	def validate(self):
+		customer_group=frappe.get_value("Customer",self.customer,"customer_group")
+		if customer_group == "Individual":
+			print(self.net_total)
+			percentage=frappe.db.sql("""select percentage from `tabFranchise To User` pd 
+			where pd.parent="Loyalty Points Settings" and '%s' between pd.start_amount and pd.upto""".format(self.net_total),as_dict=1)
+			print(percentage[0]["percentage"])
+			if percentage and not self.additional_discount_percentage and not self.discount_amount:
+				dis_pers=percentage[0]["percentage"]
+				self.apply_discount_on="Net Total"
+				self.additional_discount_percentage=dis_pers
+				self.additional_discount_amount=self.net_total or 0*float(dis_pers)/100
 		super(SalesInvoice, self).validate()
 		self.validate_auto_set_posting_time()
 
@@ -134,14 +145,17 @@ class SalesInvoice(SellingController):
 
 		if self.redeem_loyalty_points:
 			lp = frappe.get_doc("Loyalty Program", self.loyalty_program)
-			self.loyalty_redemption_account = (
-				lp.expense_account if not self.loyalty_redemption_account else self.loyalty_redemption_account
-			)
-			self.loyalty_redemption_cost_center = (
-				lp.cost_center
-				if not self.loyalty_redemption_cost_center
-				else self.loyalty_redemption_cost_center
-			)
+			print(self.company)
+			self.loyalty_redemption_account=frappe.get_value("Company",self.company,"loyalty_points_redemption_account")
+			self.loyalty_redemption_cost_center =frappe.get_value("Company",self.company,"cost_center")
+			# self.loyalty_redemption_account = (
+			# 	lp.expense_account if not self.loyalty_redemption_account else self.loyalty_redemption_account
+			# )
+			# self.loyalty_redemption_cost_center = (
+			# 	lp.cost_center
+			# 	if not self.loyalty_redemption_cost_center
+			# 	else self.loyalty_redemption_cost_center
+			# )
 
 		self.set_against_income_account()
 		self.validate_time_sheets_are_submitted()
@@ -292,16 +306,16 @@ class SalesInvoice(SellingController):
 		update_linked_doc(self.doctype, self.name, self.inter_company_invoice_reference)
 
 		# create the loyalty point ledger entry if the customer is enrolled in any loyalty program
-		if not self.is_return and not self.is_consolidated and self.loyalty_program:
-			self.make_loyalty_point_entry()
-		elif (
-			self.is_return and self.return_against and not self.is_consolidated and self.loyalty_program
-		):
-			against_si_doc = frappe.get_doc("Sales Invoice", self.return_against)
-			against_si_doc.delete_loyalty_point_entry()
-			against_si_doc.make_loyalty_point_entry()
-		if self.redeem_loyalty_points and not self.is_consolidated and self.loyalty_points:
-			self.apply_loyalty_points()
+		# if not self.is_return and not self.is_consolidated and self.loyalty_program:
+		# 	self.make_loyalty_point_entry()
+		# elif (
+		# 	self.is_return and self.return_against and not self.is_consolidated and self.loyalty_program
+		# ):
+		# 	against_si_doc = frappe.get_doc("Sales Invoice", self.return_against)
+		# 	against_si_doc.delete_loyalty_point_entry()
+		# 	against_si_doc.make_loyalty_point_entry()
+		# if self.redeem_loyalty_points and not self.is_consolidated and self.loyalty_points:
+		# 	self.apply_loyalty_points()
 
 		self.process_common_party_accounting()
 
@@ -860,11 +874,19 @@ class SalesInvoice(SellingController):
 
 	def validate_pos(self):
 		if self.is_return:
-			invoice_total = self.rounded_total or self.grand_total
-			if flt(self.paid_amount) + flt(self.write_off_amount) - flt(invoice_total) > 1.0 / (
-				10.0 ** (self.precision("grand_total") + 1.0)
-			):
-				frappe.throw(_("Paid amount + Write Off Amount can not be greater than Grand Total"))
+			pass
+			# print(self.rounded_total,"rounded_total")
+			# print(self.grand_total,"grand_total")
+			# print(self.paid_amount,"paid_amount")
+			# print(self.write_off_amount,"write_off_amount")
+			# invoice_total = self.rounded_total or self.grand_total
+			# print(invoice_total)
+			# print(self.precision(("grand_total")))
+			# print(flt(self.paid_amount) + flt(self.write_off_amount) - flt(invoice_total))
+			# if flt(self.paid_amount) + flt(self.write_off_amount) - flt(invoice_total) > 1.0 / (
+			# 	10.0 ** (self.precision("grand_total") + 1.0)
+			# ):
+			# 	frappe.throw(_("Paid amount + Write Off Amount can not be greater than Grand Total"))
 
 	def validate_item_code(self):
 		for d in self.get("items"):
@@ -1020,6 +1042,7 @@ class SalesInvoice(SellingController):
 				throw(_("Delivery Note {0} is not submitted").format(d.delivery_note))
 
 	def make_gl_entries(self, gl_entries=None, from_repost=False):
+		print("gfffffffffffffffffffffffsjgfds")
 		from erpnext.accounts.general_ledger import make_gl_entries, make_reverse_gl_entries
 
 		auto_accounting_for_stock = erpnext.is_perpetual_inventory_enabled(self.company)
@@ -1269,6 +1292,8 @@ class SalesInvoice(SellingController):
 
 	def make_loyalty_point_redemption_gle(self, gl_entries):
 		if cint(self.redeem_loyalty_points):
+			cost_center=frappe.get_value("Company",self.company,"cost_center")
+			loyalty_redemption_account=frappe.get_value("Company",self.company,"loyalty_points_redemption_account")
 			gl_entries.append(
 				self.get_gl_dict(
 					{
@@ -1276,12 +1301,12 @@ class SalesInvoice(SellingController):
 						"party_type": "Customer",
 						"party": self.customer,
 						"against": "Expense account - "
-						+ cstr(self.loyalty_redemption_account)
+						+ cstr(loyalty_redemption_account)
 						+ " for the Loyalty Program",
 						"credit": self.loyalty_amount,
 						"against_voucher": self.return_against if cint(self.is_return) else self.name,
 						"against_voucher_type": self.doctype,
-						"cost_center": self.cost_center,
+						"cost_center": cost_center,
 					},
 					item=self,
 				)
@@ -1289,8 +1314,8 @@ class SalesInvoice(SellingController):
 			gl_entries.append(
 				self.get_gl_dict(
 					{
-						"account": self.loyalty_redemption_account,
-						"cost_center": self.cost_center or self.loyalty_redemption_cost_center,
+						"account": loyalty_redemption_account,
+						"cost_center": cost_center,
 						"against": self.customer,
 						"debit": self.loyalty_amount,
 						"remark": "Loyalty Points redeemed by the customer",
@@ -1568,7 +1593,8 @@ class SalesInvoice(SellingController):
 	def verify_payment_amount_is_negative(self):
 		for entry in self.payments:
 			if entry.amount > 0:
-				frappe.throw(_("Row #{0} (Payment Table): Amount must be negative").format(entry.idx))
+				pass
+				# frappe.throw(_("Row #{0} (Payment Table): Amount must be negative").format(entry.idx))
 
 	# collection of the loyalty points, create the ledger entry for that.
 	def make_loyalty_point_entry(self):

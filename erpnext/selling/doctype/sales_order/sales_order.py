@@ -684,6 +684,7 @@ def make_delivery_note(source_name, target_doc=None, skip_item_mapping=False):
 
 @frappe.whitelist()
 def make_sales_invoice(source_name, target_doc=None, ignore_permissions=False):
+	
 	def postprocess(source, target):
 		set_missing_values(source, target)
 		# Get the advance paid Journal Entries in Sales Invoice Advance
@@ -729,45 +730,48 @@ def make_sales_invoice(source_name, target_doc=None, ignore_permissions=False):
 
 			if cost_center:
 				target.cost_center = cost_center
-
-	doclist = get_mapped_doc(
-		"Sales Order",
-		source_name,
-		{
-			"Sales Order": {
-				"doctype": "Sales Invoice",
-				"field_map": {
-					"party_account_currency": "party_account_currency",
-					"payment_terms_template": "payment_terms_template",
+	sales_order_doc= frappe.get_doc("Sales Order",source_name)
+	if sales_order_doc.advance_paid == sales_order_doc.rounded_total:
+		doclist = get_mapped_doc(
+			"Sales Order",
+			source_name,
+			{
+				"Sales Order": {
+					"doctype": "Sales Invoice",
+					"field_map": {
+						"party_account_currency": "party_account_currency",
+						"payment_terms_template": "payment_terms_template",
+					},
+					"field_no_map": ["payment_terms_template"],
+					"validation": {"docstatus": ["=", 1]},
 				},
-				"field_no_map": ["payment_terms_template"],
-				"validation": {"docstatus": ["=", 1]},
-			},
-			"Sales Order Item": {
-				"doctype": "Sales Invoice Item",
-				"field_map": {
-					"name": "so_detail",
-					"parent": "sales_order",
+				"Sales Order Item": {
+					"doctype": "Sales Invoice Item",
+					"field_map": {
+						"name": "so_detail",
+						"parent": "sales_order",
+					},
+					"postprocess": update_item,
+					"condition": lambda doc: doc.qty
+					and (doc.base_amount == 0 or abs(doc.billed_amt) < abs(doc.amount)),
 				},
-				"postprocess": update_item,
-				"condition": lambda doc: doc.qty
-				and (doc.base_amount == 0 or abs(doc.billed_amt) < abs(doc.amount)),
+				"Sales Taxes and Charges": {"doctype": "Sales Taxes and Charges", "add_if_empty": True},
+				"Sales Team": {"doctype": "Sales Team", "add_if_empty": True},
 			},
-			"Sales Taxes and Charges": {"doctype": "Sales Taxes and Charges", "add_if_empty": True},
-			"Sales Team": {"doctype": "Sales Team", "add_if_empty": True},
-		},
-		target_doc,
-		postprocess,
-		ignore_permissions=ignore_permissions,
-	)
+			target_doc,
+			postprocess,
+			ignore_permissions=ignore_permissions,
+		)
 
-	automatically_fetch_payment_terms = cint(
-		frappe.db.get_single_value("Accounts Settings", "automatically_fetch_payment_terms")
-	)
-	if automatically_fetch_payment_terms:
-		doclist.set_payment_schedule()
+		automatically_fetch_payment_terms = cint(
+			frappe.db.get_single_value("Accounts Settings", "automatically_fetch_payment_terms")
+		)
+		if automatically_fetch_payment_terms:
+			doclist.set_payment_schedule()
 
-	doclist.set_onload("ignore_price_list", True)
+		doclist.set_onload("ignore_price_list", True)
+	else:
+		frappe.throw("Paid sales order only move to sales invoice")
 
 	return doclist
 
