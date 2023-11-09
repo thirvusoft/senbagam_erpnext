@@ -502,15 +502,14 @@ class PurchaseInvoice(BuyingController):
 						stock = frappe.new_doc("Stock Entry")
 						stock.stock_entry_type = "Material Issuse"
 						stock.posting_date = self.posting_date
+						stock.from_warehouse="Stores - SP"
 						for i in self.items:
 							if i.serial_no:
 								l=i.serial_no.split("\n")
-								print(l)
-								print(l[0])
 								serial_warehouse=frappe.get_value("Serial No",l[0],"warehouse") 
-								print(serial_warehouse)
+								frappe.errprint(serial_warehouse)
 								company=frappe.get_value("Warehouse",serial_warehouse,"company") 
-								print(company)
+								frappe.errprint(company)
 								stock.company =company
 								cost_center=frappe.get_value("Company",company,"cost_center")
 								stock.append(

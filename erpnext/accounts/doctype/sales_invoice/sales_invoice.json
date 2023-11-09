@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_import": 1,
+ "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2022-01-25 10:29:57.771398",
  "doctype": "DocType",
@@ -300,10 +301,10 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "0",
    "fieldname": "is_pos",
    "fieldtype": "Check",
-   "hidden": 1,
    "hide_days": 1,
    "hide_seconds": 1,
    "label": "Include Payment (POS)",
@@ -312,6 +313,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "is_pos",
    "fieldname": "pos_profile",
    "fieldtype": "Link",
@@ -832,7 +834,6 @@
    "oldfieldtype": "Currency",
    "options": "Company:company:default_currency",
    "print_hide": 1,
-   "read_only": 1,
    "reqd": 1
   },
   {
@@ -1360,6 +1361,7 @@
    "print_hide": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:doc.is_pos===1",
    "fieldname": "payments",
    "fieldtype": "Table",
@@ -1394,6 +1396,7 @@
    "hide_seconds": 1
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval: doc.is_pos || doc.redeem_loyalty_points",
    "fieldname": "paid_amount",
    "fieldtype": "Currency",
@@ -1661,6 +1664,7 @@
    "width": "50%"
   },
   {
+   "allow_on_submit": 1,
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
@@ -1671,8 +1675,7 @@
    "length": 30,
    "no_copy": 1,
    "options": "\nDraft\nReturn\nCredit Note Issued\nSubmitted\nPaid\nPartly Paid\nUnpaid\nUnpaid and Discounted\nPartly Paid and Discounted\nOverdue and Discounted\nOverdue\nCancelled\nInternal Transfer",
-   "print_hide": 1,
-   "read_only": 1
+   "print_hide": 1
   },
   {
    "fieldname": "source",
@@ -2106,6 +2109,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "depends_on": "eval:(!doc.is_return && doc.total_billing_amount > 0)",
    "fieldname": "section_break_104",
    "fieldtype": "Section Break"
@@ -2183,7 +2187,7 @@
    "link_fieldname": "consolidated_invoice"
   }
  ],
- "modified": "2023-08-23 20:46:43.695078",
+ "modified": "2023-10-20 15:26:37.245667",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Sales Invoice",

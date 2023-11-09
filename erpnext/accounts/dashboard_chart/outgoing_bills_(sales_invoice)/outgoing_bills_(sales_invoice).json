@@ -7,12 +7,13 @@
  "docstatus": 0,
  "doctype": "Dashboard Chart",
  "document_type": "Sales Invoice",
+ "dynamic_filters_json": "",
  "filters_json": "[[\"Sales Invoice\",\"docstatus\",\"=\",1]]",
  "idx": 0,
  "is_public": 1,
  "is_standard": 1,
- "last_synced_on": "2020-07-21 17:37:31.574666",
- "modified": "2023-04-24 18:43:39.591137",
+ "last_synced_on": "2023-11-09 18:05:19.485986",
+ "modified": "2023-11-09 18:23:13.572877",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Outgoing Bills (Sales Invoice)",
@@ -24,6 +25,12 @@
   },
   {
    "role": "Sales Manager"
+  },
+  {
+   "role": "Sales Master Manager"
+  },
+  {
+   "role": "Dashboard Manager"
   }
  ],
  "time_interval": "Monthly",

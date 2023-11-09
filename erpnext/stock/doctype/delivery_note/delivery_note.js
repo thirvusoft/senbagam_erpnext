@@ -165,24 +165,24 @@ erpnext.stock.DeliveryNoteController = class DeliveryNoteController extends erpn
 		}
 
 		if (!doc.is_return && doc.status!="Closed") {
-			if(doc.docstatus == 1) {
-				this.frm.add_custom_button(__('Shipment'), function() {
-					me.make_shipment() }, __('Create'));
-			}
+			// if(doc.docstatus == 1) {
+			// 	this.frm.add_custom_button(__('Shipment'), function() {
+			// 		me.make_shipment() }, __('Create'));
+			// }
 
-			if(flt(doc.per_installed, 2) < 100 && doc.docstatus==1)
-				this.frm.add_custom_button(__('Installation Note'), function() {
-					me.make_installation_note() }, __('Create'));
+			// if(flt(doc.per_installed, 2) < 100 && doc.docstatus==1)
+			// 	this.frm.add_custom_button(__('Installation Note'), function() {
+			// 		me.make_installation_note() }, __('Create'));
 
 			if (doc.docstatus==1) {
 				this.frm.add_custom_button(__('Sales Return'), function() {
 					me.make_sales_return() }, __('Create'));
 			}
 
-			if (doc.docstatus==1) {
-				this.frm.add_custom_button(__('Delivery Trip'), function() {
-					me.make_delivery_trip() }, __('Create'));
-			}
+			// if (doc.docstatus==1) {
+			// 	this.frm.add_custom_button(__('Delivery Trip'), function() {
+			// 		me.make_delivery_trip() }, __('Create'));
+			// }
 
 			if(doc.docstatus==0 && !doc.__islocal) {
 				this.frm.add_custom_button(__('Packing Slip'), function() {
@@ -227,11 +227,11 @@ erpnext.stock.DeliveryNoteController = class DeliveryNoteController extends erpn
 		}
 		erpnext.stock.delivery_note.set_print_hide(doc, dt, dn);
 
-		if(doc.docstatus==1 && !doc.is_return && !doc.auto_repeat) {
-			cur_frm.add_custom_button(__('Subscription'), function() {
-				erpnext.utils.make_subscription(doc.doctype, doc.name)
-			}, __('Create'))
-		}
+		// if(doc.docstatus==1 && !doc.is_return && !doc.auto_repeat) {
+		// 	cur_frm.add_custom_button(__('Subscription'), function() {
+		// 		erpnext.utils.make_subscription(doc.doctype, doc.name)
+		// 	}, __('Create'))
+		// }
 	}
 
 	make_shipment() {

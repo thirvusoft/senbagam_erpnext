@@ -43,8 +43,8 @@ erpnext.LeadController = class LeadController extends frappe.ui.form.Controller 
 			}, __("Create"));
 			this.frm.add_custom_button(__("Quotation"), this.make_quotation, __("Create"));
 			if (!doc.__onload.linked_prospects.length) {
-				this.frm.add_custom_button(__("Prospect"), this.make_prospect, __("Create"));
-				this.frm.add_custom_button(__('Add to Prospect'), this.add_lead_to_prospect, __('Action'));
+				// this.frm.add_custom_button(__("Prospect"), this.make_prospect, __("Create"));
+				// this.frm.add_custom_button(__('Add to Prospect'), this.add_lead_to_prospect, __('Action'));
 			}
 		}
 

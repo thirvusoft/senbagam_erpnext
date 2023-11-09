@@ -5,7 +5,7 @@
    "label": "Profit and Loss"
   }
  ],
- "content": "[{\"id\":\"i0EtSjDAXq\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Profit and Loss\",\"col\":12}},{\"id\":\"X78jcbq1u3\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"vikWSkNm6_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"pMywM0nhlj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart of Accounts\",\"col\":3}},{\"id\":\"_pRdD6kqUG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"G984SgVRJN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"1ArNvt9qhz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"F9f4I1viNr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"4IBBOIxfqW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":3}},{\"id\":\"El2anpPaFY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"1nwcM9upJo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance\",\"col\":3}},{\"id\":\"B7-uxs8tkU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"tHb3yxthkR\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"DnNtsmxpty\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Masters\",\"col\":4}},{\"id\":\"nKKr6fjgjb\",\"type\":\"card\",\"data\":{\"card_name\":\"General Ledger\",\"col\":4}},{\"id\":\"xOHTyD8b5l\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Receivable\",\"col\":4}},{\"id\":\"_Cb7C8XdJJ\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Payable\",\"col\":4}},{\"id\":\"p7NY6MHe2Y\",\"type\":\"card\",\"data\":{\"card_name\":\"Financial Statements\",\"col\":4}},{\"id\":\"KlqilF5R_V\",\"type\":\"card\",\"data\":{\"card_name\":\"Taxes\",\"col\":4}},{\"id\":\"jTUy8LB0uw\",\"type\":\"card\",\"data\":{\"card_name\":\"Cost Center and Budgeting\",\"col\":4}},{\"id\":\"PAQMqqNkBM\",\"type\":\"card\",\"data\":{\"card_name\":\"Bank Statement\",\"col\":4}},{\"id\":\"Q_hBCnSeJY\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"3AK1Zf0oew\",\"type\":\"card\",\"data\":{\"card_name\":\"Profitability\",\"col\":4}},{\"id\":\"OX7lZHbiTr\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
+ "content": "[{\"id\":\"i0EtSjDAXq\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Profit and Loss\",\"col\":12}},{\"id\":\"X78jcbq1u3\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"vikWSkNm6_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"pMywM0nhlj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart of Accounts\",\"col\":3}},{\"id\":\"_pRdD6kqUG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"G984SgVRJN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"1ArNvt9qhz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"F9f4I1viNr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"4IBBOIxfqW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":3}},{\"id\":\"El2anpPaFY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"1nwcM9upJo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance\",\"col\":3}},{\"id\":\"9Rj6p9PR8D\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"User\",\"col\":3}},{\"id\":\"B7-uxs8tkU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"tHb3yxthkR\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"DnNtsmxpty\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Masters\",\"col\":4}},{\"id\":\"nKKr6fjgjb\",\"type\":\"card\",\"data\":{\"card_name\":\"General Ledger\",\"col\":4}},{\"id\":\"xOHTyD8b5l\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Receivable\",\"col\":4}},{\"id\":\"_Cb7C8XdJJ\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounts Payable\",\"col\":4}},{\"id\":\"p7NY6MHe2Y\",\"type\":\"card\",\"data\":{\"card_name\":\"Financial Statements\",\"col\":4}},{\"id\":\"KlqilF5R_V\",\"type\":\"card\",\"data\":{\"card_name\":\"Taxes\",\"col\":4}},{\"id\":\"jTUy8LB0uw\",\"type\":\"card\",\"data\":{\"card_name\":\"Cost Center and Budgeting\",\"col\":4}},{\"id\":\"PAQMqqNkBM\",\"type\":\"card\",\"data\":{\"card_name\":\"Bank Statement\",\"col\":4}},{\"id\":\"Q_hBCnSeJY\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"3AK1Zf0oew\",\"type\":\"card\",\"data\":{\"card_name\":\"Profitability\",\"col\":4}},{\"id\":\"OX7lZHbiTr\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}}]",
  "creation": "2020-03-02 15:41:59.515192",
  "custom_blocks": [],
  "docstatus": 0,
@@ -935,14 +935,14 @@
    "is_query_report": 0,
    "label": "Loyalty Points Settings",
    "link_count": 0,
-   "link_to": "Loyalty Points Settings",
+   "link_to": "Sales Value Based Discount Settings",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2023-08-23 20:53:15.868839",
- "modified_by": "senbagampaints@sp.com",
+ "modified": "2023-11-09 16:28:25.314566",
+ "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Accounting",
  "number_cards": [],
@@ -953,14 +953,22 @@
  "restrict_to_domain": "",
  "roles": [
   {
-   "role": "Company Admin"
+   "role": "Auditor"
   }
  ],
  "sequence_id": 2.0,
  "shortcuts": [
   {
+   "doc_view": "Tree",
    "label": "Chart of Accounts",
    "link_to": "Account",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "User",
+   "link_to": "User",
    "type": "DocType"
   },
   {

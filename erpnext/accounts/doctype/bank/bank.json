@@ -101,10 +101,11 @@
   }
  ],
  "links": [],
- "modified": "2020-07-17 14:00:13.105433",
+ "modified": "2023-11-09 17:50:05.520859",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Bank",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -123,5 +124,6 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

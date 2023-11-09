@@ -9,13 +9,18 @@
  "idx": 0,
  "is_public": 1,
  "is_standard": 1,
- "modified": "2020-07-22 12:24:49.144210",
+ "modified": "2023-11-09 18:24:19.446498",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Budget Variance",
  "number_of_groups": 0,
  "owner": "Administrator",
  "report_name": "Budget Variance Report",
+ "roles": [
+  {
+   "role": "Dashboard Manager"
+  }
+ ],
  "timeseries": 0,
  "type": "Bar",
  "use_report_chart": 1,
