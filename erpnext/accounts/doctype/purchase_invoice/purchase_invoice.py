@@ -497,7 +497,7 @@ class PurchaseInvoice(BuyingController):
 			if company_type==1 and self.is_return==0:
 				for i in self.items:
 					if not i.serial_no and i.batch_no:
-						frappe.throw("Please Enter Serial No")
+						frappe.throw(f"Please Enter Serial No in row {i.idx}")
 					else:
 						stock = frappe.new_doc("Stock Entry")
 						stock.stock_entry_type = "Material Issuse"

@@ -492,8 +492,6 @@ erpnext.TransactionController = class TransactionController extends erpnext.taxe
 
 
 		if(item.item_code || item.serial_no) {
-			console.log("rrrrrrrrryyyyyyyyyyyyyyyyyyyyy")
-			console.log(item.warehouse)
 			if(!this.validate_company_and_party()) {
 				this.frm.fields_dict["items"].grid.grid_rows[item.idx - 1].remove();
 			} else {
