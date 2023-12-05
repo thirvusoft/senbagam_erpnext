@@ -116,10 +116,11 @@
   }
  ],
  "links": [],
- "modified": "2021-02-15 20:30:56.256403",
+ "modified": "2023-11-23 10:50:34.427425",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Payment Term",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -157,10 +158,23 @@
    "role": "Accounts User",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1,
+   "write": 1
   }
  ],
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "track_changes": 1
 }

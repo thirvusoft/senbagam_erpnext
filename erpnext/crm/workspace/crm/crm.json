@@ -285,7 +285,7 @@
    "type": "Link"
   }
  ],
- "modified": "2023-11-09 16:47:06.549679",
+ "modified": "2023-12-02 13:15:59.156984",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "CRM",
@@ -300,7 +300,10 @@
    "role": "Company Admin"
   },
   {
-   "role": "Sales Master Manager"
+   "role": "Configuration Manager"
+  },
+  {
+   "role": "Accounts Manager"
   }
  ],
  "sequence_id": 7.0,

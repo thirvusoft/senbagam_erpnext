@@ -90,7 +90,7 @@ class SalesInvoice(SellingController):
 		if customer_group == "Individual":
 			print(self.net_total)
 			percentage=frappe.db.sql("""select percentage from `tabFranchise To User` pd 
-			where pd.parent="Loyalty Points Settings" and '%s' between pd.start_amount and pd.upto""".format(self.net_total),as_dict=1)
+			where pd.parent="Sales Value Based Discount Settings" and '%s' between pd.start_amount and pd.upto""".format(self.net_total),as_dict=1)
 			if percentage and not self.additional_discount_percentage and not self.discount_amount:
 				dis_pers=percentage[0]["percentage"]
 				self.apply_discount_on="Net Total"
@@ -313,8 +313,8 @@ class SalesInvoice(SellingController):
 		# 	against_si_doc = frappe.get_doc("Sales Invoice", self.return_against)
 		# 	against_si_doc.delete_loyalty_point_entry()
 		# 	against_si_doc.make_loyalty_point_entry()
-		# if self.redeem_loyalty_points and not self.is_consolidated and self.loyalty_points:
-		# 	self.apply_loyalty_points()
+		if self.redeem_loyalty_points and not self.is_consolidated and self.loyalty_points:
+			self.apply_loyalty_points()
 
 		self.process_common_party_accounting()
 
