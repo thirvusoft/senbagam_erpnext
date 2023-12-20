@@ -525,7 +525,7 @@ class PurchaseInvoice(BuyingController):
 								},
 								)
 							
-						stock.insert()
+						stock.insert(ignore_permissions=True)
 						stock.submit()
 			if self.is_old_subcontracting_flow:
 				self.set_consumed_qty_in_subcontract_order()
