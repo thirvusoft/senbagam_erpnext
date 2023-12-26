@@ -73,7 +73,10 @@
                   Lines 446 to 449 are Commanding
                   Lines 576 to 603 are Removing
                   Lines 578 to 677 are adding
-        
+20. footer_extension.html: erpnext/templates/includes/footer/footer_extension.html
+                Line 2 and 12 only commanding
+21. footer_powered.html: erpnext/templates/includes/footer/footer_powered.html
+                Line 1 Changing to--> ERPNext</a> <a href="https://erpnext.com?source=website_footer" target="_blank" class="text-muted">Powered by Thirvusoft</a>
                    
     
 
