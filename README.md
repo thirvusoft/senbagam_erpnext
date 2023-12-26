@@ -4,7 +4,14 @@
                                                    Line 568 to 571 adding for batch no empty in Purchase Invoice Item Table
 3. sales_invoice.py:erpnext/accounts/doctype/sales_invoice/sales_invoice.py
                           Line 93, Line Change Loyalty Points Settings to Sales Value Based Discount Settings
-                          Line 132 and 133 are commanding and Line 265 and 266 are Commanding 
+                          Line 132 and 133 are commanding and Lines 265 and 266 are Commanding 
+                          Lines 89 to 99 are added, 137 to 144 are Removed and 148 to 158 are Changed
+                          Lines 309 to 318 are Commanding, 863 to 867 are removing, 878 to 889 are Commanding and 1295 and 1296 are adding
+                          Line 1304 Changed to--> cstr(loyalty_redemption_account)
+                          Line 1309 changed to--> "cost_center": cost_center,
+                          Line 1317 and 1318 are Changed to --> "account": loyalty_redemption_account,
+								"cost_center": cost_center,
+                          Line 1596 adding pass and 1597 Line is Commanding
 5. lead.js: erpnext/crm/doctype/lead/lead.js
                           Line 46 &47  --> Line Are Commanding for Button --> Prospect, Add to Prospect
 6. delivery_note.js:erpnext/stock/doctype/delivery_note/delivery_note.js
@@ -95,3 +102,4 @@
 26. sales_order.py: erpnext/selling/doctype/sales_order/sales_order.py
               Line 732 to 741 were removed and 743 to 750 were also Removed 752 to 754 were Removed, 756 to 762 were removed, 764 to 768 also removed, 770 removed
               Line 733 to 746 adding, 748 to 756 are Adding, 758 to 759 are Adding, 761 to 764 adding, 766 to 770 lines adding, 772 to 774 are adding
+27. 
