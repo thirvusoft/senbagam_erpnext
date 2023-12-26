@@ -74,10 +74,24 @@
                   Lines 576 to 603 are Removing
                   Lines 578 to 677 are adding
 20. footer_extension.html: erpnext/templates/includes/footer/footer_extension.html
-                Line 2 and 12 only commanding
+                Lines 2 and 12 only commanding
 21. footer_powered.html: erpnext/templates/includes/footer/footer_powered.html
                 Line 1 Changing to--> ERPNext</a> <a href="https://erpnext.com?source=website_footer" target="_blank" class="text-muted">Powered by Thirvusoft</a>
-                   
-    
-
-      
+22. gl_entry.py: erpnext/accounts/doctype/gl_entry/gl_entry.py
+                Lines 99 to 112 are Commanding
+23. loyalty_program.py: erpnext/accounts/doctype/loyalty_program/loyalty_program.py
+                Lines 132 to 136 are Commanding and  139 adding this --> company=frappe.get_all("Company",{"company_type":"Parent"},pluck="name")
+                Line  140 changed to --> ref_doc.customer, loyalty_program, posting_date, company[0]
+                160 and 161 Lines are Added and 164 and 165 also adding
+24. pos_invoice.py: erpnext/accounts/doctype/pos_invoice/pos_invoice.py
+                Lines 376 to 379 are Commanding
+25. pos_invoice_merge_log.py: erpnext/accounts/doctype/pos_invoice_merge_log/pos_invoice_merge_log.py
+               Line 159--> invoice.loyalty_redemption_account = doc.loyalty_redemption_account This line Changed into
+                          invoice.loyalty_redemption_account =  frappe.get_value("Company",ref_doc.company,"loyalty_points_redemption_account")
+				                  # doc.loyalty_redemption_account
+               Line 160--> invoice.loyalty_redemption_cost_center = doc.loyalty_redemption_cost_center, line changed into
+                          invoice.loyalty_redemption_cost_center = frappe.get_value("Company",doc.company,"cost_center")
+				                   # doc.loyalty_redemption_cost_center
+26. sales_order.py: erpnext/selling/doctype/sales_order/sales_order.py
+              Line 732 to 741 were removed and 743 to 750 were also Removed 752 to 754 were Removed, 756 to 762 were removed, 764 to 768 also removed, 770 removed
+              Line 733 to 746 adding, 748 to 756 are Adding, 758 to 759 are Adding, 761 to 764 adding, 766 to 770 lines adding, 772 to 774 are adding
