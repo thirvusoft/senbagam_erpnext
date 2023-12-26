@@ -55,13 +55,26 @@
                     Line 416 Adding --> 		var without_serial=0
                     Line 425 to 490 editing and adding
 13. delivery_note.py: erpnext/stock/doctype/delivery_note/delivery_note.py
-                    Line 142 to 144 Are commanding for Batch and Serial no Settings
+                    Lines 142 to 144 Are commanding for Batch and Serial no Settings
 14. purchase_receipt.py: erpnext/stock/doctype/purchase_receipt/purchase_receipt.py
-                    Line 121 to 124 are Commanding and line 248 also Commanding
+                    Line 121 to 124 are Commanding and line 248 is also Commanding
 15. stock_ledger_entry.py: erpnext/stock/doctype/stock_ledger_entry/stock_ledger_entry.py
-                    Lines 106 to 111 Are commanding for the purpose to Batch Number Message
+                    Lines 106 to 111 Are commanding for the purpose of Batch Number Message
 16. get_item_details.py: erpnext/stock/get_item_details.py
                     Line 158 change --> or (args.get("doctype") == "Sales Invoice" and args.get("update_stock")) to or (args.get("doctype") == "Sales Invoice" or args.get("update_stock"))
-                    Line
+                    Lines 164 to 177 are Removing
+                    Lines 164 to 226 are Adding
+17. stock_ledger.py: erpnext/stock/report/stock_ledger/stock_ledger.py
+                   Lines 94 and 95 are commanding and 98 to 100 are also commanding
+18. stock_ledger.py:erpnext/stock/stock_ledger.py
+                   Lines 146 to 158 are Commanding
+19. serial_no.py: erpnext/stock/doctype/serial_no/serial_no.py
+                  Lines 335 to 342 are Commanding
+                  Lines 446 to 449 are Commanding
+                  Lines 576 to 603 are Removing
+                  Lines 578 to 677 are adding
+        
+                   
+    
 
       
