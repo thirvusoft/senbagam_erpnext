@@ -829,6 +829,7 @@ def get_stock_balance_for(
 		posting_time,
 		with_valuation_rate=with_valuation_rate,
 		with_serial_no=has_serial_no,
+		batch_no=batch_no,
 	)
 
 	if has_serial_no:
